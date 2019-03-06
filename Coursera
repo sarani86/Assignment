@@ -32,3 +32,11 @@ NZV
 
 TrainSet <- TrainSet[, -NZV]
 TestSet  <- TestSet[, -NZV]
+
+# Checking for Missing Value and Dropping Variables with over 90% missing values
+
+MV    <- sapply(TrainSet, function(x) mean(is.na(x))) > 0.90
+TrainSet <- TrainSet[, MV==FALSE]
+TestSet  <- TestSet[, MV==FALSE]
+dim(TrainSet)
+dim(TestSet)
